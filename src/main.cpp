@@ -8,6 +8,7 @@ using namespace std;
 int misse = 0;
 int missm = 0;
 int missh = 0;
+int endg = 0;
 
 void hangman_draw(int misstakes, int difficulty)
 {
@@ -162,17 +163,20 @@ void hangman_draw(int misstakes, int difficulty)
     }
 }
 
-void word(char* righ, char* flse, char* mem, int i, int r, int f)
+int word(char* righ, char* flse, char* mem, int i, int r, int f)
 {
     system("clear");
     int pass = 0;
+
     for (int b = 0; b < r; b++) {
         if (b == i) {
             mem[b] = righ[i];
+            endg++;
             for (int c = b + 1; c < r; c++) {
-                if ((righ[c] == mem[b]) && (mem[c] == '_'))
+                if ((righ[c] == mem[b]) && (mem[c] == '_')) {
                     mem[c] = righ[c];
-                else {
+                    endg++;
+                } else {
                     if (mem[c] == '_')
                         mem[c] = '_';
                 }
@@ -197,14 +201,13 @@ void word(char* righ, char* flse, char* mem, int i, int r, int f)
             cout << mem[b];
     }
     cout << endl;
+    return endg;
 }
 
 int main()
 {
     setlocale(LC_CTYPE, "");
     cout << "Тест" << endl;
-    int miss = 0;
-    int diff = 0;
     bool end = true;
     int r = 7;
     int f = 5;
@@ -213,6 +216,7 @@ int main()
     char flse[f] = {"_____"};
     char mem[r] = {"_______"};
     char sim;
+
     while (end == true) {
         int check = 0;
         cout << "Ведите предполагаемую букву" << endl;
@@ -224,15 +228,20 @@ int main()
                 break;
             }
         }
-        if (check == 0) {
+        if ((check == 0) && (fch < f + 1)) {
             flse[fch] = sim;
             fch++;
             word(righ, flse, mem, 25, r, f);
         }
+        if (endg >= r) {
+            cout << "Игра окончена, вы победили" << endl;
+            end = false;
+        }
+        if (fch > f) {
+            cout << "Игра окончена, вы проиграли" << endl;
+            end = false;
+        }
     }
-
-    cin >> diff;
-    hangman_draw(miss, diff);
 
     return 0;
 }
