@@ -166,9 +166,12 @@ void word(char* righ, char* flse, char* mem, int i, int r, int f)
         if (b == i) {
             mem[b] = righ[i];
             for (int c = b + 1; c < r; c++) {
-                mem[c] = ' ';
-                if (righ[c] == mem[b])
+                if ((righ[c] == mem[b]) && (mem[c] == '_'))
                     mem[c] = righ[c];
+                else {
+                    if (mem[c] == '_')
+                        mem[c] = '_';
+                }
             }
         }
     }
@@ -192,12 +195,12 @@ int main()
     int miss = 0;
     int diff = 0;
     bool end = true;
-    int r = 8;
+    int r = 7;
     int f = 5;
     int fch = 0;
     char righ[r] = {"Lokomor"};
-    char flse[f] = {"    "};
-    char mem[r] = {"       "};
+    char flse[f] = {"____"};
+    char mem[r] = {"______"};
     char sim;
     while (end == true) {
         int check = 0;
