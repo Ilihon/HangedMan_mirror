@@ -159,13 +159,17 @@ void hangman_draw(int misstakes, int difficulty)
     }
 }
 
-void word(char* righ, char* flse, int i, int r, int f)
+void word(char* righ, char* flse, char* mem, int i, int r, int f)
 {
-    char mem[r];
+    system("clear");
     for (int b = 0; b < r; b++) {
         if (b == i) {
             mem[b] = righ[i];
-            cout << mem[b];
+            for (int c = b + 1; c < r; c++) {
+                mem[c] = ' ';
+                if (righ[c] == mem[b])
+                    mem[c] = righ[c];
+            }
         }
     }
     cout << "Неправильные буквы" << endl;
@@ -174,6 +178,11 @@ void word(char* righ, char* flse, int i, int r, int f)
     }
     cout << endl;
     cout << "Отгаданные буквы" << endl;
+    for (int b = 0; b < r; b++) {
+        if (mem[b] != ' ')
+            cout << mem[b];
+    }
+    cout << endl;
 }
 
 int main()
@@ -185,19 +194,31 @@ int main()
     bool end = true;
     int r = 8;
     int f = 5;
-    char righ[r] = {"gaybar!"};
+    int fch = 0;
+    char righ[r] = {"Lokomor"};
     char flse[f] = {"    "};
+    char mem[r] = {"       "};
     char sim;
-    cout << "Ведите предполагаемую букву" << endl;
-    cin >> sim;
-    for (int i = 0; i < 8; i++) {
-        if (sim == righ[i]) {
-            word(righ, flse, i, r, f);
+    while (end == true) {
+        int check = 0;
+        cout << "Ведите предполагаемую букву" << endl;
+        cin >> sim;
+        for (int i = 0; i < 8; i++) {
+            if (sim == righ[i]) {
+                word(righ, flse, mem, i, r, f);
+                check++;
+                break;
+            }
+        }
+        if (check == 0) {
+            flse[fch] = sim;
+            word(righ, flse, mem, 25, r, f);
+            fch++;
         }
     }
-    while (end == true) {
-        cin >> diff;
-        hangman_draw(miss, diff);
-    }
+
+    cin >> diff;
+    hangman_draw(miss, diff);
+
     return 0;
 }
