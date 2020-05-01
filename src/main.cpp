@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
 	  srand(time(NULL));
-    char *word_result = load_txt("word.txt");
+    char *word_result = load_txt("word.txt",3);
     //string buffer = load_txt("word.txt");
     //cout << buffer;
     //strcpy(word_result,buffer.c_str());
