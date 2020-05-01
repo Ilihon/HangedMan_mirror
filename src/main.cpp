@@ -161,6 +161,13 @@ void hangman_draw(int misstakes, int difficulty)
 
 void word(char* righ, char* flse, int i, int r, int f)
 {
+    char mem[r];
+    for (int b = 0; b < r; b++) {
+        if (b == i) {
+            mem[b] = righ[i];
+            cout << mem[b];
+        }
+    }
     cout << "Неправильные буквы" << endl;
     for (int b = 0; b < f; b++) {
         cout << flse[b];
