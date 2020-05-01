@@ -159,6 +159,16 @@ void hangman_draw(int misstakes, int difficulty)
     }
 }
 
+void word(char* righ, char* flse, int i, int r, int f)
+{
+    cout << "Неправильные буквы" << endl;
+    for (int b = 0; b < f; b++) {
+        cout << flse[b];
+    }
+    cout << endl;
+    cout << "Отгаданные буквы" << endl;
+}
+
 int main()
 {
     setlocale(LC_CTYPE, "");
@@ -166,6 +176,18 @@ int main()
     int miss = 0;
     int diff = 0;
     bool end = true;
+    int r = 8;
+    int f = 5;
+    char righ[r] = {"gaybar!"};
+    char flse[f] = {"    "};
+    char sim;
+    cout << "Ведите предполагаемую букву" << endl;
+    cin >> sim;
+    for (int i = 0; i < 8; i++) {
+        if (sim == righ[i]) {
+            word(righ, flse, i, r, f);
+        }
+    }
     while (end == true) {
         cin >> diff;
         hangman_draw(miss, diff);
