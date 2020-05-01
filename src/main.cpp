@@ -124,19 +124,20 @@ void hangman_draw(int misstakes, int difficulty)
 
     switch (difficulty) {
     case 0:
-        system("clear");
-        cout << hangman[misse] << endl;
-        misse++;
+
+        if (misstakes > 0)
+            misse++;
         if (misse > 9) {
             misse = 0;
             break;
         }
         cout << misse << endl;
+        cout << hangman[misse] << endl;
         break;
     case 1:
-        system("clear");
-        cout << hangman[missm] << endl;
-        missm += 2;
+
+        if (misstakes > 0)
+            missm += 2;
         if (missm == 10) {
             missm -= 1;
         }
@@ -144,17 +145,19 @@ void hangman_draw(int misstakes, int difficulty)
             missm = 0;
             break;
         }
+        cout << hangman[missm] << endl;
         cout << missm << endl;
         break;
     case 2:
-        system("clear");
-        cout << hangman[missh] << endl;
-        missh += 3;
+
+        if (misstakes > 0)
+            missh += 3;
         if (missh > 9) {
             missh = 0;
             break;
         }
         cout << missh << endl;
+        cout << hangman[missh] << endl;
         break;
     }
 }
@@ -162,6 +165,7 @@ void hangman_draw(int misstakes, int difficulty)
 void word(char* righ, char* flse, char* mem, int i, int r, int f)
 {
     system("clear");
+    int pass = 0;
     for (int b = 0; b < r; b++) {
         if (b == i) {
             mem[b] = righ[i];
@@ -173,14 +177,21 @@ void word(char* righ, char* flse, char* mem, int i, int r, int f)
                         mem[c] = '_';
                 }
             }
+            pass = 1;
         }
     }
+    if (pass != 1)
+        hangman_draw(1, 1);
+    if (pass != 0)
+        hangman_draw(0, 1);
     cout << "Неправильные буквы" << endl;
+
     for (int b = 0; b < f; b++) {
         cout << flse[b];
     }
     cout << endl;
     cout << "Отгаданные буквы" << endl;
+
     for (int b = 0; b < r; b++) {
         if (mem[b] != ' ')
             cout << mem[b];
@@ -199,8 +210,8 @@ int main()
     int f = 5;
     int fch = 0;
     char righ[r] = {"Lokomor"};
-    char flse[f] = {"____"};
-    char mem[r] = {"______"};
+    char flse[f] = {"_____"};
+    char mem[r] = {"_______"};
     char sim;
     while (end == true) {
         int check = 0;
@@ -215,8 +226,8 @@ int main()
         }
         if (check == 0) {
             flse[fch] = sim;
-            word(righ, flse, mem, 25, r, f);
             fch++;
+            word(righ, flse, mem, 25, r, f);
         }
     }
 
