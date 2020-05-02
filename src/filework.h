@@ -19,29 +19,36 @@ char *take_new_word(char *file_name, int file_length){
 	}
 	int counter = 0;
 	int number_needed = random_number(file_length);
+	char *line;
+	line = new char[4096];
 	char *buf;
-	buf = new char[4096];
-	char *str;
 	cout << number_needed << endl;
 
 	while (!feof(f)){
-		if (fgets(buf, 4096, f) > 0 && 0 != strcmp(buf, "")){
+		if (fgets(line, 4096, f) > 0 && 0 != strcmp(line, "")){
 			//cout << buf;
-			str = strtok(buf, " ,.\n");
+			buf = strtok(line, " ,.\n"); //разделяет строку ну слова, если идут через пробел, запятую, точку или конец строки
 			do{
-				cout <<counter<<" - "<< str<<endl;
+				cout <<counter<<" - "<< buf<<endl;
 				if(counter == number_needed){
+					//переводит слово в нижний регистр
+				  for (int i = 0; i < strlen(buf); ++i) {
+    				buf[i] = tolower(buf[i]);
+					}
+					//cout << buf;
+					///////////////////////////////////
 					fclose(f);
-					return str;
+					return buf;
 				}
-				str = strtok(NULL, " ,.\n");
+				buf = strtok(NULL, " ,.\n");
 				counter++;
-			} while(str);
+			} while(buf);
 
 		}
 	}
-	free(buf);
 	fclose(f);
+	free(line);
+	//free(buf);
 	return "ERROR";
 }
 /*
