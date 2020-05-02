@@ -1,15 +1,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
-#include <cstring>
-#include <ctime>
 #include "filework.h"
 
-#define WORDSEASY "word1.txt"
-#define WORDSNORM "word2.txt"
-#define WORDSHARD "word3.txt"
 
 using namespace std;
 
