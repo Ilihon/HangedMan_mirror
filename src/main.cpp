@@ -1,3 +1,5 @@
+#include "draw.h"
+#include "misstake.h"
 #include <iostream>
 #include <locale.h>
 #include <stdio.h>
@@ -5,185 +7,10 @@
 
 using namespace std;
 
-int misse = 0;
-int missm = 0;
-int missh = 0;
-int endg = 0;
-
-void hangman_draw(int misstakes, int difficulty)
-{
-    string hangman[10]
-            = {"\n"
-               "\n"
-               "\n"
-               "\n"
-               "\n"
-               "\n"
-               "\n"
-               "\n"
-               "==================\n"
-               "|                |",
-
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|         O        \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|         O        \n"
-               "|         |       \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|         O        \n"
-               "|        /|        \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|         O        \n"
-               "|        /|\\      \n"
-               "|                  \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|         O        \n"
-               "|        /|\\      \n"
-               "|        /         \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |",
-
-               "|==========        \n"
-               "|         |        \n"
-               "|         |        \n"
-               "|         O        \n"
-               "|        /|\\      \n"
-               "|        / \\      \n"
-               "|                  \n"
-               "|                  \n"
-               "==================\n"
-               "|                |"};
-
-    switch (difficulty) {
-    case 0:
-
-        if (misstakes > 0)
-            misse++;
-        if (misse > 9) {
-            misse = 0;
-            break;
-        }
-        cout << misse << endl;
-        cout << hangman[misse] << endl;
-        break;
-    case 1:
-
-        if (misstakes > 0)
-            missm += 2;
-        if (missm == 10) {
-            missm -= 1;
-        }
-        if (missm > 9) {
-            missm = 0;
-            break;
-        }
-        cout << hangman[missm] << endl;
-        cout << missm << endl;
-        break;
-    case 2:
-
-        if (misstakes > 0)
-            missh += 3;
-        if (missh > 9) {
-            missh = 0;
-            break;
-        }
-        cout << missh << endl;
-        cout << hangman[missh] << endl;
-        break;
-    }
-}
-
-int word(char* righ, char* flse, char* mem, int i, int r, int f)
+void word(int pass, char* flse, char* mem, int i, int r, int f)
 {
     system("clear");
-    int pass = 0;
 
-    for (int b = 0; b < r; b++) {
-        if (b == i) {
-            mem[b] = righ[i];
-            endg++;
-            for (int c = b + 1; c < r; c++) {
-                if ((righ[c] == mem[b]) && (mem[c] == '_')) {
-                    mem[c] = righ[c];
-                    endg++;
-                } else {
-                    if (mem[c] == '_')
-                        mem[c] = '_';
-                }
-            }
-            pass = 1;
-        }
-    }
     if (pass != 1)
         hangman_draw(1, 1);
     if (pass != 0)
@@ -201,7 +28,7 @@ int word(char* righ, char* flse, char* mem, int i, int r, int f)
             cout << mem[b];
     }
     cout << endl;
-    return endg;
+    cout << endg << endl;
 }
 
 int main()
@@ -209,6 +36,7 @@ int main()
     setlocale(LC_CTYPE, "");
     cout << "Тест" << endl;
     bool end = true;
+    int misst = 0;
     int r = 7;
     int f = 5;
     int fch = 0;
@@ -223,7 +51,8 @@ int main()
         cin >> sim;
         for (int i = 0; i < 8; i++) {
             if (sim == righ[i]) {
-                word(righ, flse, mem, i, r, f);
+                misst = misstake(righ, mem, i, r);
+                word(misst, flse, mem, i, r, f);
                 check++;
                 break;
             }
@@ -231,16 +60,19 @@ int main()
         if ((check == 0) && (fch < f + 1)) {
             flse[fch] = sim;
             fch++;
-            word(righ, flse, mem, 25, r, f);
+            word(misst, flse, mem, 25, r, f);
         }
-        if (endg >= r) {
+        if (misst == 2) {
+            system("clear");
             cout << "Игра окончена, вы победили" << endl;
             end = false;
         }
-        if (fch > f) {
+        if (fch >= f) {
+            system("clear");
             cout << "Игра окончена, вы проиграли" << endl;
             end = false;
         }
+        misst = 0;
     }
 
     return 0;
