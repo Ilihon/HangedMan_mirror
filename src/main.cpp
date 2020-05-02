@@ -15,10 +15,9 @@ int main()
     cout << "Тест" << endl;
     bool end = true;
     int misst = 0;
-    int r = 0;
+    int r = 7;
     int f = 0;
-    cout << "Ведите длину слова" << endl;
-    cin >> r;
+
     cout << "Выберете сложность (0, 1, 2)" << endl;
     int diffic;
     cin >> diffic;
