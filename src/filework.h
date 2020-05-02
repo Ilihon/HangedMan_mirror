@@ -1,37 +1,20 @@
+#ifndef FILEWORK_H
+#define FILEWORK_H
+
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
-#include <ctime>
 
+#define WORDSEASY "src/word1.txt"
+#define WORDSNORM "src/word2.txt"
+#define WORDSHARD "src/word3.txt"
 using namespace std;
 
-int random_number(int rand_border){
-	return (rand() % rand_border);
-}
+int random_number(int rand_border);
+char *take_new_word(char *file_name, int file_length);
+int word_count_definition(char *file_name);
+int file_check(char *file_name_easy, char *file_name_normal, char *file_name_hard);
 
-char *load_txt(char *file_name, int file_length){
-	//try:
-	FILE *f = fopen(file_name, "r");
-	if (f == NULL){
-		perror ("Error opening file");
-		return "ERROR";
-	}
-	int counter = 0;
-	int number_needed = random_number(file_length);
-	char *buf;
-	buf = new char[4096];
-
-	while (!feof(f)){
-		if (fgets(buf, 4096, f) > 0 && 0 != strcmp(buf, "")){
-			//cout << buf;
-			if(counter == number_needed){
-				return buf;
-			}
-			counter++;
-		}
-	}
-	free(buf);
-	return "ERROR";
-}
+#endif
