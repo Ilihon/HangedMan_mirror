@@ -127,12 +127,12 @@ void hangman_draw(int misstakes, int difficulty)
 
         if (misstakes > 0)
             misse++;
-        if (misse > 9) {
+        if (misse > 10) {
             misse = 0;
             break;
         }
         cout << misse << endl;
-        cout << hangman[misse] << endl;
+        cout << hangman[misse - 1] << endl;
         break;
     case 1:
 

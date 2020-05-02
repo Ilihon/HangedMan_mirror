@@ -2,14 +2,14 @@
 
 using namespace std;
 
-void word(int pass, char* flse, char* mem, int i, int r, int f)
+void word(int pass, char* flse, char* mem, int diff, int r, int f)
 {
     system("clear");
 
     if (pass == 0)
-        hangman_draw(1, 1);
+        hangman_draw(1, diff);
     if (pass == 1)
-        hangman_draw(0, 1);
+        hangman_draw(0, diff);
     cout << "Неправильные буквы" << endl;
 
     for (int b = 0; b < f; b++) {

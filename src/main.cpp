@@ -1,6 +1,7 @@
 #include "draw.h"
 #include "misstake.h"
 #include "wordch.h"
+#include <cstring>
 #include <iostream>
 #include <locale.h>
 #include <stdio.h>
@@ -14,11 +15,31 @@ int main()
     cout << "Тест" << endl;
     bool end = true;
     int misst = 0;
-    int r = 7;
-    int f = 5;
+    int r = 0;
+    int f = 0;
+    cout << "Ведите длину слова" << endl;
+    cin >> r;
+    cout << "Выберете сложность (0, 1, 2)" << endl;
+    int diffic;
+    cin >> diffic;
     int fch = 0;
+
+    if (diffic == 0) {
+        f = 10;
+    } else if (diffic == 1) {
+        f = 5;
+    } else if (diffic == 2) {
+        f = 3;
+    } else {
+        cout << "Неправильно ввели сложность, завершение" << endl;
+        return 0;
+    }
+    char flse[f];
+    for (int i = 0; i < f; i++) {
+        flse[i] = '_';
+    }
+
     char righ[r] = {"Lokomor"};
-    char flse[f] = {"_____"};
     char mem[r] = {"_______"};
     char sim;
 
@@ -26,10 +47,10 @@ int main()
         int check = 0;
         cout << "Ведите предполагаемую букву" << endl;
         cin >> sim;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < r; i++) {
             if (sim == righ[i]) {
                 misst = misstake(righ, mem, i, r);
-                word(misst, flse, mem, i, r, f);
+                word(misst, flse, mem, diffic, r, f);
                 check++;
                 break;
             }
@@ -37,7 +58,7 @@ int main()
         if ((check == 0) && (fch < f + 1)) {
             flse[fch] = sim;
             fch++;
-            word(misst, flse, mem, 25, r, f);
+            word(misst, flse, mem, diffic, r, f);
         }
         if (misst == 2) {
             cout << "Игра окончена, вы победили" << endl;
