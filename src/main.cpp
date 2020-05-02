@@ -49,8 +49,13 @@ int main()
         }
         misst = 0;
         if (end == false) {
+            char a;
+            cin.clear();
+            while (cin.get() != '\n') {
+                // очистка потока для корректной работы getchar
+            };
             cout << "Нажмите enter для выхода" << endl;
-            cin >> sim;
+            a = getchar();
             system("clear");
         }
     }
