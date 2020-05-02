@@ -1,35 +1,12 @@
 #include "draw.h"
 #include "misstake.h"
+#include "wordch.h"
 #include <iostream>
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 using namespace std;
-
-void word(int pass, char* flse, char* mem, int i, int r, int f)
-{
-    system("clear");
-
-    if (pass != 1)
-        hangman_draw(1, 1);
-    if (pass != 0)
-        hangman_draw(0, 1);
-    cout << "Неправильные буквы" << endl;
-
-    for (int b = 0; b < f; b++) {
-        cout << flse[b];
-    }
-    cout << endl;
-    cout << "Отгаданные буквы" << endl;
-
-    for (int b = 0; b < r; b++) {
-        if (mem[b] != ' ')
-            cout << mem[b];
-    }
-    cout << endl;
-    cout << endg << endl;
-}
 
 int main()
 {
@@ -49,7 +26,7 @@ int main()
         int check = 0;
         cout << "Ведите предполагаемую букву" << endl;
         cin >> sim;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 7; i++) {
             if (sim == righ[i]) {
                 misst = misstake(righ, mem, i, r);
                 word(misst, flse, mem, i, r, f);
@@ -63,16 +40,19 @@ int main()
             word(misst, flse, mem, 25, r, f);
         }
         if (misst == 2) {
-            system("clear");
             cout << "Игра окончена, вы победили" << endl;
             end = false;
         }
         if (fch >= f) {
-            system("clear");
             cout << "Игра окончена, вы проиграли" << endl;
             end = false;
         }
         misst = 0;
+        if (end == false) {
+            cout << "Нажмите enter для выхода" << endl;
+            cin >> sim;
+            system("clear");
+        }
     }
 
     return 0;
