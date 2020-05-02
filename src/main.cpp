@@ -12,7 +12,10 @@ using namespace std;
 int main()
 {
 	  srand(time(NULL));
+    cout << word_count_definition("word.txt") <<endl;
     char *word_result = take_new_word("word.txt", 11);
     cout << word_result;
+
+
     return 0;
 }

@@ -32,9 +32,16 @@ char *take_new_word(char *file_name, int file_length){
 				cout <<counter<<" - "<< buf<<endl;
 				if(counter == number_needed){
 					//переводит слово в нижний регистр
-				  for (int i = 0; i < strlen(buf); ++i) {
-    				buf[i] = tolower(buf[i]);
-					}
+				  //for (int i = 0; i < strlen(buf); ++i) {
+    				//buf[i] = tolower(buf[i]);
+						//cout << buf[i]+1;
+						//cout << strcmp(buf,"Юра0");
+	    			//if(buf[i]>='А' && buf[i]<='Я'){
+							//cout << i;
+						//	buf[i]+='я'-'Я';
+						//}
+					//}
+					//cout << buf <<endl;
 					//cout << buf;
 					///////////////////////////////////
 					fclose(f);
@@ -51,8 +58,28 @@ char *take_new_word(char *file_name, int file_length){
 	//free(buf);
 	return "ERROR";
 }
-/*
-int pre_load_txt(char *file_name){
-	int word_count
+
+int word_count_definition(char *file_name){
+	FILE *f = fopen(file_name, "r");
+	if (f == NULL){
+		perror ("Error opening file");
+		return -1;
+	}
+	int word_count = 0;
+	char *line;
+	line = new char[4096];
+	char *buf;
+	while (!feof(f)){
+		if (fgets(line, 4096, f) > 0 && 0 != strcmp(line, "")){
+			buf = strtok(line, " ,.\n");
+			do{
+				word_count++;
+				buf = strtok(NULL, " ,.\n");
+			} while(buf);
+
+		}
+	}
+	fclose(f);
+	free(line);
+	return word_count;
 }
-*/
