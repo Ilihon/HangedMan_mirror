@@ -23,27 +23,12 @@ char *take_new_word(char *file_name, int file_length){
 	line = new char[4096];
 	char *buf;
 	cout << number_needed << endl;
-
 	while (!feof(f)){
 		if (fgets(line, 4096, f) > 0 && 0 != strcmp(line, "")){
-			//cout << buf;
 			buf = strtok(line, " ,.\n"); //разделяет строку ну слова, если идут через пробел, запятую, точку или конец строки
 			do{
 				cout <<counter<<" - "<< buf<<endl;
 				if(counter == number_needed){
-					//переводит слово в нижний регистр
-				  //for (int i = 0; i < strlen(buf); ++i) {
-    				//buf[i] = tolower(buf[i]);
-						//cout << buf[i]+1;
-						//cout << strcmp(buf,"Юра0");
-	    			//if(buf[i]>='А' && buf[i]<='Я'){
-							//cout << i;
-						//	buf[i]+='я'-'Я';
-						//}
-					//}
-					//cout << buf <<endl;
-					//cout << buf;
-					///////////////////////////////////
 					fclose(f);
 					return buf;
 				}
@@ -55,7 +40,6 @@ char *take_new_word(char *file_name, int file_length){
 	}
 	fclose(f);
 	free(line);
-	//free(buf);
 	return "ERROR";
 }
 
@@ -82,4 +66,20 @@ int word_count_definition(char *file_name){
 	fclose(f);
 	free(line);
 	return word_count;
+}
+
+int file_check(char *file_name_easy, char *file_name_normal, char *file_name_hard){
+	int word_count = word_count_definition(file_name_easy);
+	if(word_count<1){
+		return word_count;
+	}
+	word_count = word_count_definition(file_name_normal);
+	if(word_count<1){
+		return word_count;
+	}
+	word_count = word_count_definition(file_name_hard);
+	if(word_count<1){
+		return word_count;
+	}
+	return 1;
 }
