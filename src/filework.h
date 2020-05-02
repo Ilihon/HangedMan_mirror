@@ -30,11 +30,11 @@ char *take_new_word(char *file_name, int file_length){
 			str = strtok(buf, " ,.\n");
 			do{
 				cout <<counter<<" - "<< str<<endl;
-				str = strtok(NULL, " ,.\n");
 				if(counter == number_needed){
 					fclose(f);
-					return buf;
+					return str;
 				}
+				str = strtok(NULL, " ,.\n");
 				counter++;
 			} while(str);
 
