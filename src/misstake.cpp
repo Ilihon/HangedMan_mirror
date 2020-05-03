@@ -1,6 +1,5 @@
 #include "misstake.h"
 
-extern int endg;
 
 int misstake(char* righ, char* mem, int i, int r)
 {

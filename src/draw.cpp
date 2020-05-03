@@ -1,8 +1,5 @@
 #include "draw.h"
 
-extern int misse;
-extern int missm;
-extern int missh;
 void hangman_draw(int misstakes, int difficulty)
 {
     string hangman[10]
