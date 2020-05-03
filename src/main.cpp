@@ -1,6 +1,4 @@
-#include "draw.h"
 #include "misstake.h"
-#include "wordch.h"
 #include <cstring>
 #include <iostream>
 #include <locale.h>
@@ -9,14 +7,19 @@
 
 using namespace std;
 
+int misse = 0;
+int missm = 0;
+int missh = 0;
+int endg = 0;
+
 int main()
 {
     setlocale(LC_CTYPE, "");
     cout << "Тест" << endl;
     bool end = true;
     int misst = 0;
-    int r = 7;
-    int f = 0;
+    int right_letters = 7;
+    int false_letters = 0;
 
     cout << "Выберете сложность (0, 1, 2)" << endl;
     int diffic;
@@ -24,46 +27,46 @@ int main()
     int fch = 0;
 
     if (diffic == 0) {
-        f = 10;
+        false_letters = 10;
     } else if (diffic == 1) {
-        f = 5;
+        false_letters = 5;
     } else if (diffic == 2) {
-        f = 3;
+        false_letters = 3;
     } else {
         cout << "Неправильно ввели сложность, завершение" << endl;
         return 0;
     }
-    char flse[f];
-    for (int i = 0; i < f; i++) {
+    char flse[false_letters];
+    for (int i = 0; i < false_letters; i++) {
         flse[i] = '_';
     }
 
-    char righ[r] = {"Lokomor"};
-    char mem[r] = {"_______"};
+    char righ[right_letters] = {"Lokomor"};
+    char mem[right_letters] = {"_______"};
     char sim;
 
     while (end == true) {
         int check = 0;
         cout << "Ведите предполагаемую букву" << endl;
         cin >> sim;
-        for (int i = 0; i < r; i++) {
+        for (int i = 0; i < right_letters; i++) {
             if (sim == righ[i]) {
-                misst = misstake(righ, mem, i, r);
-                word(misst, flse, mem, diffic, r, f);
+                misst = misstake(righ, mem, i, right_letters);
+                word(misst, flse, mem, diffic, right_letters, false_letters);
                 check++;
                 break;
             }
         }
-        if ((check == 0) && (fch < f + 1)) {
+        if ((check == 0) && (fch < false_letters + 1)) {
             flse[fch] = sim;
             fch++;
-            word(misst, flse, mem, diffic, r, f);
+            word(misst, flse, mem, diffic, right_letters, false_letters);
         }
         if (misst == 2) {
             cout << "Игра окончена, вы победили" << endl;
             end = false;
         }
-        if (fch >= f) {
+        if (fch >= false_letters) {
             cout << "Игра окончена, вы проиграли" << endl;
             end = false;
         }
