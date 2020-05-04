@@ -84,9 +84,21 @@ int main()
             }
         }
         if ((check == 0) && (fch < false_letters + 1)) {
-            flse[fch] = sim;
-            fch++;
-            word(misst, flse, mem, diffic, right_letters, false_letters);
+            int exist = 0;
+            for (int i = 0; i < false_letters; i++) {
+                if (sim == flse[i]) {
+                    exist = 1;
+                    break;
+                }
+            }
+            if (exist == 1) {
+                word(1, flse, mem, diffic, right_letters, false_letters);
+                cout << "This letter already wrong." << endl;
+            } else {
+                flse[fch] = sim;
+                fch++;
+                word(misst, flse, mem, diffic, right_letters, false_letters);
+            }
         }
         if (misst == 2) {
             cout << "Игра окончена, вы победили" << endl;

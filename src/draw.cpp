@@ -121,7 +121,7 @@ void hangman_draw(int misstakes, int difficulty)
                "\n"
                "\n"
                "\n"
-               "|                |"};
+               "__________________"};
 
     switch (difficulty) {
     case 0:
