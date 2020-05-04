@@ -16,7 +16,6 @@ int setdificulty(int diffic, char** righ)
         *righ = take_new_word(WORDSHARD, word_count);
         return 3;
     } else {
-        cout << "Неправильно ввели сложность, попробуйте снова" << endl;
         return 0;
     }
 }
