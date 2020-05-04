@@ -124,7 +124,7 @@ void hangman_draw(int misstakes, int difficulty)
                "__________________"};
 
     switch (difficulty) {
-    case 0:
+    case 1:
 
         if (misstakes > 0)
             misse++;
@@ -134,7 +134,7 @@ void hangman_draw(int misstakes, int difficulty)
         }
         cout << hangman[misse - 1] << endl;
         break;
-    case 1:
+    case 2:
 
         if (misstakes > 0)
             missm += 2;
@@ -149,7 +149,7 @@ void hangman_draw(int misstakes, int difficulty)
         if (missm != 0)
             cout << hangman[missm] << endl;
         break;
-    case 2:
+    case 3:
 
         if (misstakes > 0)
             missh += 3;

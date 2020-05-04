@@ -31,12 +31,17 @@ int main()
     int diffic = 0;
     int fch = 0;
     char* righ;
-
-    cout << "Выберете сложность (0, 1, 2)" << endl;
-    char diff[256];
-    cin >> diff;
-    diffic = atoi(diff);
-    int false_letters = setdificulty(diffic, &righ);
+    int false_letters = 0;
+    while(1){
+      cout << "Выберете сложность (1, 2, 3)" << endl;
+      char diff[256];
+      cin >> diff;
+      diffic = atoi(diff);
+      false_letters = setdificulty(diffic, &righ);
+      if(false_letters!=0){
+        break;
+      }
+    }
 
 
     int right_letters = strlen(righ);

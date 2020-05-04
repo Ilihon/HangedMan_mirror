@@ -3,20 +3,20 @@
 int setdificulty(int diffic, char** righ)
 {
     int word_count;
-    if (diffic == 0) {
+    if (diffic == 1) {
         word_count = word_count_definition(WORDSEASY);
         *righ = take_new_word(WORDSEASY, word_count);
         return 10;
-    } else if (diffic == 1) {
+    } else if (diffic == 2) {
         word_count = word_count_definition(WORDSNORM);
         *righ = take_new_word(WORDSNORM, word_count);
         return 5;
-    } else if (diffic == 2) {
+    } else if (diffic == 3) {
         word_count = word_count_definition(WORDSHARD);
         *righ = take_new_word(WORDSHARD, word_count);
         return 3;
     } else {
-        cout << "Неправильно ввели сложность, завершение" << endl;
+        cout << "Неправильно ввели сложность, попробуйте снова" << endl;
         return 0;
     }
 }
