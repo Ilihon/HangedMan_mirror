@@ -121,6 +121,7 @@ int main()
               }
               if (fch >= false_letters) {
                   cout << "Игра окончена, вы проиграли" << endl;
+                  cout << "Загаданное слово: " << righ <<endl;
                   end = false;
               }
               misst = 0;
