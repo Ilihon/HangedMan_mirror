@@ -15,12 +15,11 @@ char *take_new_word(char *file_name, int file_length){
 	char *line;
 	line = new char[4096];
 	char *buf;
-	cout << number_needed << endl;
+	char *kostyl;
 	while (!feof(f)){
 		if (fgets(line, 4096, f) > 0 && 0 != strcmp(line, "")){
 			buf = strtok(line, " ,.\n"); //разделяет строку ну слова, если идут через пробел, запятую, точку или конец строки
 			do{
-				cout <<counter<<" - "<< buf<<endl;
 				if(counter == number_needed){
 					fclose(f);
 					return buf;
@@ -32,7 +31,7 @@ char *take_new_word(char *file_name, int file_length){
 		}
 	}
 	fclose(f);
-	free(line);
+	delete(line);
 	return "ERROR";
 }
 
@@ -57,7 +56,7 @@ int word_count_definition(char *file_name){
 		}
 	}
 	fclose(f);
-	free(line);
+	delete(line);
 	return word_count;
 }
 

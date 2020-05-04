@@ -1,6 +1,5 @@
 #include "filework.h"
 #include "misstake.h"
-#include <cstring>
 #include <iostream>
 #include <locale.h>
 #include <stdio.h>
@@ -16,9 +15,10 @@ int endg = 0;
 
 int main()
 {
-    setlocale(LC_CTYPE, "");
-
+    system("clear");
+    //setlocale(LC_CTYPE, "");
     srand(time(NULL));
+
     int check = file_check(WORDSEASY, WORDSNORM, WORDSHARD);
     if (check == 0) {
         cout << "Файл пуст" << endl;
@@ -28,15 +28,10 @@ int main()
         cout << "Не найден файл с нужным именем" << endl;
         return 0;
     }
-    int word_count = word_count_definition(WORDSEASY);
-    cout << word_count << endl;
-    char* word_result = take_new_word(WORDSEASY, word_count);
-    cout << word_result << endl;
 
     cout << "Тест" << endl;
     bool end = true;
     int misst = 0;
-    int right_letters = 7;
     int false_letters = 0;
 
     cout << "Выберете сложность (0, 1, 2)" << endl;
@@ -44,28 +39,43 @@ int main()
     cin >> diffic;
     int fch = 0;
 
+    int word_count;
+		char* righ;
+
     if (diffic == 0) {
         false_letters = 10;
+				word_count = word_count_definition(WORDSEASY);
+				righ = take_new_word(WORDSEASY, word_count);
     } else if (diffic == 1) {
         false_letters = 5;
+				word_count = word_count_definition(WORDSNORM);
+				righ = take_new_word(WORDSNORM, word_count);
     } else if (diffic == 2) {
         false_letters = 3;
+				word_count = word_count_definition(WORDSHARD);
+				righ = take_new_word(WORDSHARD, word_count);
     } else {
         cout << "Неправильно ввели сложность, завершение" << endl;
         return 0;
     }
-    char flse[false_letters];
-    for (int i = 0; i < false_letters; i++) {
-        flse[i] = '_';
-    }
+		int right_letters = strlen(righ);
+		char flse[false_letters];
 
-    char righ[right_letters] = {"Lokomor"};
-    char mem[right_letters] = {"_______"};
+		memset(flse, '_', false_letters);
+    char mem[right_letters];
+		memset(mem, '_', right_letters);
+		cout<<endl <<"Слово "<< righ<< " - " <<right_letters<< " - ";
+		for (int i=0; i<false_letters; i++){
+			cout << flse[i];
+		}
+		cout << " - ";
+		for (int i=0; i<right_letters; i++){
+			cout << mem[i];
+		}
     char sim;
-
     while (end == true) {
         int check = 0;
-        cout << "Ведите предполагаемую букву" << endl;
+        cout << endl<<"Ведите предполагаемую букву" << endl;
         cin >> sim;
         for (int i = 0; i < right_letters; i++) {
             if (sim == righ[i]) {
@@ -100,6 +110,5 @@ int main()
             system("clear");
         }
     }
-
     return 0;
 }
