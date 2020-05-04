@@ -1,10 +1,5 @@
 #include "filework.h"
 #include "misstake.h"
-#include <iostream>
-#include <locale.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 using namespace std;
 
@@ -15,8 +10,8 @@ int endg = 0;
 
 int main()
 {
-    system("clear");
-    //setlocale(LC_CTYPE, "");
+    //system("clear");
+    setlocale(LC_CTYPE, "");
     srand(time(NULL));
 
     int check = file_check(WORDSEASY, WORDSNORM, WORDSHARD);
@@ -60,7 +55,6 @@ int main()
     }
 		int right_letters = strlen(righ);
 		char flse[false_letters];
-
 		memset(flse, '_', false_letters);
     char mem[right_letters];
 		memset(mem, '_', right_letters);
@@ -72,6 +66,7 @@ int main()
 		for (int i=0; i<right_letters; i++){
 			cout << mem[i];
 		}
+		cout << endl;
     char sim;
     while (end == true) {
         int check = 0;

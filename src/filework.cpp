@@ -15,13 +15,21 @@ char *take_new_word(char *file_name, int file_length){
 	char *line;
 	line = new char[4096];
 	char *buf;
-	char *kostyl;
 	while (!feof(f)){
 		if (fgets(line, 4096, f) > 0 && 0 != strcmp(line, "")){
 			buf = strtok(line, " ,.\n"); //разделяет строку ну слова, если идут через пробел, запятую, точку или конец строки
 			do{
 				if(counter == number_needed){
 					fclose(f);
+					cout << buf <<endl;
+					int j=0;
+					char character;
+					while(buf[j]){
+						character = buf[j];
+				 		buf[j]=(char)tolower(character);  // преобразовать строчную букву в прописную
+				 	 	j++;
+					}
+					cout << buf <<endl;
 					return buf;
 				}
 				buf = strtok(NULL, " ,.\n");

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cctype>
 
 #define WORDSEASY "src/word1.txt"
 #define WORDSNORM "src/word2.txt"
