@@ -44,6 +44,7 @@ int main()
       switch (answer){
         case 3:
           game = false;
+          break;
         case 2:
           system("clear");
           while(true){
