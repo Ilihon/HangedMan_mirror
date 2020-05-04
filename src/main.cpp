@@ -11,7 +11,7 @@ int endg = 0;
 
 int main()
 {
-    // system("clear");
+    system("clear");
     setlocale(LC_CTYPE, "");
     srand(time(NULL));
 
@@ -60,7 +60,7 @@ int main()
     char mem[right_letters];
     memset(mem, '_', right_letters);
     system("clear");
-    cout << endl << "Слово " << righ << " - " << right_letters << " - ";
+    //cout << endl << "Слово " << righ << " - " << right_letters << " - ";
     for (int i = 0; i < false_letters; i++) {
         cout << flse[i];
     }
