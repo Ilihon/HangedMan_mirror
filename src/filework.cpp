@@ -17,7 +17,8 @@ char *take_new_word(char *file_name, int file_length){
 	char *buf;
 	while (!feof(f)){
 		if (fgets(line, 4096, f) > 0 && 0 != strcmp(line, "")){
-			buf = strtok(line, " ,.\n"); //разделяет строку ну слова, если идут через пробел, запятую, точку или конец строки
+			//разделяет строку ну слова, если идут через пробел, запятую, точку, цифры, русские символы или конец строки
+			buf = strtok(line, " абвгдеёжзийклмнопрстуфхцчщьыъэюя0123456789,.\n");
 			do{
 				if(counter == number_needed){
 					fclose(f);
