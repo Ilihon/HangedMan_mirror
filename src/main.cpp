@@ -1,3 +1,4 @@
+#include "draw.h"
 #include "filework.h"
 #include "misstake.h"
 
@@ -10,7 +11,7 @@ int endg = 0;
 
 int main()
 {
-    //system("clear");
+    // system("clear");
     setlocale(LC_CTYPE, "");
     srand(time(NULL));
 
@@ -35,42 +36,44 @@ int main()
     int fch = 0;
 
     int word_count;
-		char* righ;
+    char* righ;
 
     if (diffic == 0) {
         false_letters = 10;
-				word_count = word_count_definition(WORDSEASY);
-				righ = take_new_word(WORDSEASY, word_count);
+        word_count = word_count_definition(WORDSEASY);
+        righ = take_new_word(WORDSEASY, word_count);
     } else if (diffic == 1) {
         false_letters = 5;
-				word_count = word_count_definition(WORDSNORM);
-				righ = take_new_word(WORDSNORM, word_count);
+        word_count = word_count_definition(WORDSNORM);
+        righ = take_new_word(WORDSNORM, word_count);
     } else if (diffic == 2) {
         false_letters = 3;
-				word_count = word_count_definition(WORDSHARD);
-				righ = take_new_word(WORDSHARD, word_count);
+        word_count = word_count_definition(WORDSHARD);
+        righ = take_new_word(WORDSHARD, word_count);
     } else {
         cout << "Неправильно ввели сложность, завершение" << endl;
         return 0;
     }
-		int right_letters = strlen(righ);
-		char flse[false_letters];
-		memset(flse, '_', false_letters);
+    int right_letters = strlen(righ);
+    char flse[false_letters];
+    memset(flse, '_', false_letters);
     char mem[right_letters];
-		memset(mem, '_', right_letters);
-		cout<<endl <<"Слово "<< righ<< " - " <<right_letters<< " - ";
-		for (int i=0; i<false_letters; i++){
-			cout << flse[i];
-		}
-		cout << " - ";
-		for (int i=0; i<right_letters; i++){
-			cout << mem[i];
-		}
-		cout << endl;
+    memset(mem, '_', right_letters);
+    system("clear");
+    cout << endl << "Слово " << righ << " - " << right_letters << " - ";
+    for (int i = 0; i < false_letters; i++) {
+        cout << flse[i];
+    }
+    cout << " - ";
+    for (int i = 0; i < right_letters; i++) {
+        cout << mem[i];
+    }
+    cout << endl;
+    hangman_draw(0, 0);
     char sim;
     while (end == true) {
         int check = 0;
-        cout << endl<<"Ведите предполагаемую букву" << endl;
+        cout << endl << "Ведите предполагаемую букву" << endl;
         cin >> sim;
         for (int i = 0; i < right_letters; i++) {
             if (sim == righ[i]) {

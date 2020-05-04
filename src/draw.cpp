@@ -2,7 +2,7 @@
 
 void hangman_draw(int misstakes, int difficulty)
 {
-    string hangman[10]
+    string hangman[11]
             = {"\n"
                "\n"
                "\n"
@@ -111,6 +111,16 @@ void hangman_draw(int misstakes, int difficulty)
                "|                  \n"
                "|                  \n"
                "==================\n"
+               "|                |",
+
+               "\n"
+               "\n"
+               "\n"
+               "\n"
+               "\n"
+               "\n"
+               "\n"
+               "\n"
                "|                |"};
 
     switch (difficulty) {
@@ -151,4 +161,7 @@ void hangman_draw(int misstakes, int difficulty)
         cout << hangman[missh] << endl;
         break;
     }
+
+    if ((misse == 0) && (missm == 0) && (missh == 0))
+        cout << hangman[10] << endl;
 }
