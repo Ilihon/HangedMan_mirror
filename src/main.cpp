@@ -28,19 +28,16 @@ int main()
     cout << "Hangman" << endl;
     bool end = true;
     int misst = 0;
+    int diffic = 0;
+    int fch = 0;
+    char* righ;
 
     cout << "Выберете сложность (0, 1, 2)" << endl;
-    // char *diff;
-    // scanf("%c", &diff);
-    int diffic; // = atoi(diff);
-    cin >> diffic;
-    cout << endl << diffic;
-    int fch = 0;
-
-    char* righ;
+    char diff[256];
+    cin >> diff;
+    diffic = atoi(diff);
     int false_letters = setdificulty(diffic, &righ);
 
-    cout << endl << false_letters;
 
     int right_letters = strlen(righ);
     char flse[false_letters];
@@ -48,7 +45,7 @@ int main()
     char mem[right_letters];
     memset(mem, '_', right_letters);
     system("clear");
-    cout << endl << "Слово " << righ << " - " << right_letters << " - ";
+    /*cout << endl << "Слово " << righ << " - " << right_letters << " - ";
     for (int i = 0; i < false_letters; i++) {
         cout << flse[i];
     }
@@ -56,7 +53,7 @@ int main()
     for (int i = 0; i < right_letters; i++) {
         cout << mem[i];
     }
-    cout << endl;
+    cout << endl;*/
     hangman_draw(0, 0);
     char sim;
     while (end == true) {

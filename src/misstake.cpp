@@ -6,17 +6,14 @@ int setdificulty(int diffic, char** righ)
     if (diffic == 0) {
         word_count = word_count_definition(WORDSEASY);
         *righ = take_new_word(WORDSEASY, word_count);
-        cout << "\nreturn 10";
         return 10;
     } else if (diffic == 1) {
         word_count = word_count_definition(WORDSNORM);
         *righ = take_new_word(WORDSNORM, word_count);
-        cout << "\nreturn 5";
         return 5;
     } else if (diffic == 2) {
         word_count = word_count_definition(WORDSHARD);
         *righ = take_new_word(WORDSHARD, word_count);
-        cout << "\nreturn 3";
         return 3;
     } else {
         cout << "Неправильно ввели сложность, завершение" << endl;

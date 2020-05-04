@@ -29,7 +29,6 @@ char *take_new_word(char *file_name, int file_length){
 				 		buf[j]=(char)tolower(character);  // преобразовать строчную букву в прописную
 				 	 	j++;
 					}
-					cout << "return buf";
 					return buf;
 				}
 				buf = strtok(NULL, IGNORESYM);
