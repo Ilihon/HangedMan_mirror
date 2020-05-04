@@ -146,7 +146,9 @@ void hangman_draw(int misstakes, int difficulty)
             missm = 0;
             break;
         }
-        cout << hangman[missm] << endl;
+
+        if (missm != 0)
+            cout << hangman[missm] << endl;
         cout << missm << endl;
         break;
     case 2:
@@ -157,7 +159,8 @@ void hangman_draw(int misstakes, int difficulty)
             missh = 0;
             break;
         }
-        cout << missh << endl;
+        if (missh != 0)
+            cout << missh << endl;
         cout << hangman[missh] << endl;
         break;
     }
