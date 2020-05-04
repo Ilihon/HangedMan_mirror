@@ -22,7 +22,6 @@ char *take_new_word(char *file_name, int file_length){
 			do{
 				if(counter == number_needed){
 					fclose(f);
-					cout << buf <<endl;
 					int j=0;
 					char character;
 					while(buf[j]){
@@ -30,7 +29,7 @@ char *take_new_word(char *file_name, int file_length){
 				 		buf[j]=(char)tolower(character);  // преобразовать строчную букву в прописную
 				 	 	j++;
 					}
-					cout << buf <<endl;
+					cout << "return buf";
 					return buf;
 				}
 				buf = strtok(NULL, IGNORESYM);

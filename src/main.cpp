@@ -25,42 +25,30 @@ int main()
         return 0;
     }
 
-    cout << "Тест" << endl;
+    cout << "Hangman" << endl;
     bool end = true;
     int misst = 0;
-    int false_letters = 0;
 
     cout << "Выберете сложность (0, 1, 2)" << endl;
-    int diffic;
+    //char *diff;
+    //scanf("%c", &diff);
+    int diffic;// = atoi(diff);
     cin >> diffic;
+    cout <<endl<< diffic;
     int fch = 0;
 
-    int word_count;
     char* righ;
+    int false_letters = setdificulty(diffic, &righ);
 
-    if (diffic == 0) {
-        false_letters = 10;
-        word_count = word_count_definition(WORDSEASY);
-        righ = take_new_word(WORDSEASY, word_count);
-    } else if (diffic == 1) {
-        false_letters = 5;
-        word_count = word_count_definition(WORDSNORM);
-        righ = take_new_word(WORDSNORM, word_count);
-    } else if (diffic == 2) {
-        false_letters = 3;
-        word_count = word_count_definition(WORDSHARD);
-        righ = take_new_word(WORDSHARD, word_count);
-    } else {
-        cout << "Неправильно ввели сложность, завершение" << endl;
-        return 0;
-    }
+    cout << endl << false_letters;
+
     int right_letters = strlen(righ);
     char flse[false_letters];
     memset(flse, '_', false_letters);
     char mem[right_letters];
     memset(mem, '_', right_letters);
     system("clear");
-    //cout << endl << "Слово " << righ << " - " << right_letters << " - ";
+    cout << endl << "Слово " << righ << " - " << right_letters << " - ";
     for (int i = 0; i < false_letters; i++) {
         cout << flse[i];
     }
