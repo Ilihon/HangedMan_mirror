@@ -75,6 +75,7 @@ int main()
         int check = 0;
         cout << endl << "Ведите предполагаемую букву" << endl;
         cin >> sim;
+        sim=(char)tolower(sim);
         for (int i = 0; i < right_letters; i++) {
             if (sim == righ[i]) {
                 misst = misstake(righ, mem, i, right_letters);
