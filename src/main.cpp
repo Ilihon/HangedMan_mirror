@@ -44,8 +44,6 @@ int main()
       switch (answer){
         case 3:
           game = false;
-          return 0;
-          break;
         case 2:
           system("clear");
           while(true){
@@ -56,10 +54,15 @@ int main()
             if(diffic==1 || diffic==2 || diffic==3){
               break;
             }
+            system("clear");
             cout << "Неправильно ввели сложность, попробуйте снова" << endl;
           }
           break;
         case 1:
+          misse = 0;
+          missm = 0;
+          missh = 0;
+          endg = 0;
           false_letters = setdificulty(diffic, &righ);
           bool end = true;
           int fch = 0;
@@ -70,15 +73,6 @@ int main()
           char mem[right_letters];
           memset(mem, '_', right_letters);
           system("clear");
-          /*cout << endl << "Слово " << righ << " - " << right_letters << " - ";
-          for (int i = 0; i < false_letters; i++) {
-              cout << flse[i];
-          }
-          cout << " - ";
-          for (int i = 0; i < right_letters; i++) {
-              cout << mem[i];
-          }
-          cout << endl;*/
           hangman_draw(0, 0);
           char sim;
           while (end == true) {
@@ -135,10 +129,9 @@ int main()
                   while (cin.get() != '\n') {
                       // очистка потока для корректной работы getchar
                   };
-                  cout << "Нажмите enter для выхода" << endl;
+                  cout << "Нажмите enter для выхода в меню" << endl;
                   a = getchar();
                   system("clear");
-                  return 0;
               }
           }
           break;
