@@ -11,6 +11,7 @@
 #define WORDSEASY "src/word1.txt"
 #define WORDSNORM "src/word2.txt"
 #define WORDSHARD "src/word3.txt"
+#define IGNORESYM " ,.\nабвгдеёжзийклмнопрстуфхцчщьыъэюя0123456789"
 using namespace std;
 
 int random_number(int rand_border);
