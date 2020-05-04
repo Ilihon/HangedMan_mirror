@@ -30,11 +30,11 @@ int main()
     int misst = 0;
 
     cout << "Выберете сложность (0, 1, 2)" << endl;
-    //char *diff;
-    //scanf("%c", &diff);
-    int diffic;// = atoi(diff);
+    // char *diff;
+    // scanf("%c", &diff);
+    int diffic; // = atoi(diff);
     cin >> diffic;
-    cout <<endl<< diffic;
+    cout << endl << diffic;
     int fch = 0;
 
     char* righ;
@@ -63,16 +63,25 @@ int main()
         int check = 0;
         cout << endl << "Ведите предполагаемую букву" << endl;
         cin >> sim;
-        sim=(char)tolower(sim);
+        sim = (char)tolower(sim);
+        int existr = 0;
         for (int i = 0; i < right_letters; i++) {
-            if (sim == righ[i]) {
+            if (sim == mem[i]) {
+                existr = 1;
+                word(1, flse, mem, diffic, right_letters, false_letters);
+                cout << "This letter already right." << endl;
+                break;
+            }
+        }
+        for (int i = 0; i < right_letters; i++) {
+            if ((sim == righ[i]) && (existr == 0)) {
                 misst = misstake(righ, mem, i, right_letters);
                 word(misst, flse, mem, diffic, right_letters, false_letters);
                 check++;
                 break;
             }
         }
-        if ((check == 0) && (fch < false_letters + 1)) {
+        if ((check == 0) && (fch < false_letters + 1) && (existr == 0)) {
             int exist = 0;
             for (int i = 0; i < false_letters; i++) {
                 if (sim == flse[i]) {
