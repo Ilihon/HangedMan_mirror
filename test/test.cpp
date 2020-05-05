@@ -8,33 +8,29 @@ int missm = 0;
 int missh = 0;
 int endg = 0;
 
-TEST(FileworkTest, MissingFile)
-{
+TEST(FileworkTest, MissingFile) {
   int result = file_check("src/wrong.txt", "src/wrong.txt", "src/wrong.txt");
   int expected = -1;
   EXPECT_EQ(expected, result);
 }
 
-TEST(FileworkTest, EmptyFile)
-{
+TEST(FileworkTest, EmptyFile) {
   int result = file_check("test/empty.txt", "src/word2.txt", "src/word3.txt");
   int expected = 0;
   EXPECT_EQ(expected, result);
 }
 
-TEST(FileworkTest, FileCheckPassed)
-{
+TEST(FileworkTest, FileCheckPassed) {
   int num = file_check("src/word1.txt", "src/word2.txt", "src/word3.txt");
   int result = 0;
-  if(num>0){
+  if (num > 0) {
     result = 1;
   }
   int expected = 1;
   EXPECT_EQ(expected, result);
 }
 
-TEST(DifficultyTest, WrongDifficulty)
-{
+TEST(DifficultyTest, WrongDifficulty) {
   char *buf;
   int result = 0;
   result = setdificulty(0, &buf);
@@ -42,8 +38,7 @@ TEST(DifficultyTest, WrongDifficulty)
   EXPECT_EQ(expected, result);
 }
 
-TEST(DifficultyTest, EasyDifficulty)
-{
+TEST(DifficultyTest, EasyDifficulty) {
   char *buf;
   int result = 0;
   result = setdificulty(1, &buf);
@@ -51,8 +46,7 @@ TEST(DifficultyTest, EasyDifficulty)
   EXPECT_EQ(expected, result);
 }
 
-TEST(DifficultyTest, NormalDifficulty)
-{
+TEST(DifficultyTest, NormalDifficulty) {
   char *buf;
   int result = 0;
   result = setdificulty(2, &buf);
@@ -60,8 +54,7 @@ TEST(DifficultyTest, NormalDifficulty)
   EXPECT_EQ(expected, result);
 }
 
-TEST(DifficultyTest, HardDifficulty)
-{
+TEST(DifficultyTest, HardDifficulty) {
   char *buf;
   int result = 0;
   result = setdificulty(3, &buf);
@@ -69,21 +62,35 @@ TEST(DifficultyTest, HardDifficulty)
   EXPECT_EQ(expected, result);
 }
 
-TEST(MisstakeTest, WrongDifficulty)
-{
-  char *buf = "test"
-  char *enter = "t";
+TEST(MisstakeTest, ExistLetter) {
+  char buf[5] = "test";
+  char enter[5] = "t__t";
   int result = 0;
-
-  ...
-
+  result = misstake(buf, enter, 0, 5);
   int expected = 0;
   EXPECT_EQ(expected, result);
 }
 
+TEST(MisstakeTest, NonExistLetter) {
+  char buf[5] = "test";
+  char enter[5] = "____";
+  int result = 0;
+  result = misstake(buf, enter, 3, 4);
+  int expected = 1;
+  EXPECT_EQ(expected, result);
+}
 
-int main(int argc, char** argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(MisstakeTest, EndGame) {
+  char buf[5] = "test";
+  char enter[5] = "te_t";
+  int result = 0;
+  endg = 3;
+  result = misstake(buf, enter, 2, 4);
+  int expected = 2;
+  EXPECT_EQ(expected, result);
+}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
