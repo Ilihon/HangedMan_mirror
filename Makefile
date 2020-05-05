@@ -53,6 +53,6 @@ cleantest:
 	rm build/test/*.o
 
 format:
-	clang-format -i src/*.h
-	clang-format -i src/*.cpp
-	clang-format -i test/*.cpp
+	clang-format -i ./src/*.h
+	clang-format -i ./src/*.cpp
+	clang-format -i ./test/*.cpp
