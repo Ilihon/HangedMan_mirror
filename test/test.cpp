@@ -33,6 +33,42 @@ TEST(FileworkTest, FileCheckPassed)
   EXPECT_EQ(expected, result);
 }
 
+TEST(DifficultyTest, WrongDifficulty)
+{
+  char *buf;
+  int result = 0;
+  result = setdificulty(0, &buf);
+  int expected = 0;
+  EXPECT_EQ(expected, result);
+}
+
+TEST(DifficultyTest, EasyDifficulty)
+{
+  char *buf;
+  int result = 0;
+  result = setdificulty(1, &buf);
+  int expected = 10;
+  EXPECT_EQ(expected, result);
+}
+
+TEST(DifficultyTest, NormalDifficulty)
+{
+  char *buf;
+  int result = 0;
+  result = setdificulty(2, &buf);
+  int expected = 5;
+  EXPECT_EQ(expected, result);
+}
+
+TEST(DifficultyTest, HardDifficulty)
+{
+  char *buf;
+  int result = 0;
+  result = setdificulty(3, &buf);
+  int expected = 3;
+  EXPECT_EQ(expected, result);
+}
+
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
