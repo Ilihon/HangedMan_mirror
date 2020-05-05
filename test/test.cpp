@@ -69,6 +69,19 @@ TEST(DifficultyTest, HardDifficulty)
   EXPECT_EQ(expected, result);
 }
 
+TEST(MisstakeTest, WrongDifficulty)
+{
+  char *buf = "test"
+  char *enter = "t";
+  int result = 0;
+
+  ...
+
+  int expected = 0;
+  EXPECT_EQ(expected, result);
+}
+
+
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
