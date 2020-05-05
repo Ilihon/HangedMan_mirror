@@ -8,9 +8,9 @@
 #include <string.h>
 #include <cctype>
 
-#define WORDSEASY "src/word1.txt"
-#define WORDSNORM "src/word2.txt"
-#define WORDSHARD "src/word3.txt"
+#define WORDSEASY "files/word1.txt"
+#define WORDSNORM "files/word2.txt"
+#define WORDSHARD "files/word3.txt"
 #define IGNORESYM " ,.\nабвгдеёжзийклмнопрстуфхцчщьыъэюя0123456789"
 using namespace std;
 
