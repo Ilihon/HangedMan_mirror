@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all run runtest clean cleantest format
 
 g = g++
 flags = -Wall -c
@@ -51,3 +51,8 @@ cleantest:
 	rm build/test/*.a
 	rm build/src/*.o
 	rm build/test/*.o
+
+format:
+	clang-format -i src/*.h
+	clang-format -i src/*.cpp
+	clang-format -i test/*.cpp
