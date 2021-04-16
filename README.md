@@ -10,12 +10,12 @@
 # Сборка и запуск приложения
 
    Сборка возможна на Unix-подобных операционных системах на базе ядра Linux
-   * $ git clone https://github.com/IlyaIlichev/TRPO-Hangman-kurswork.git
+   * $ git clone *ВСТАВИТЬ СВОЮ ССЫЛКУ*
    * $ cd TRPO-Hangman-kurswork
    * $ make
    * $ make run
 # Сборка и запуск тестов
-   * $ git clone https://github.com/IlyaIlichev/TRPO-Hangman-kurswork.git
+   * $ git clone *ВСТАВИТЬ СВОЮ ССЫЛКУ*
    * $ cd TRPO-Hangman-kurswork
    * $ make test
    * $ make runtest
